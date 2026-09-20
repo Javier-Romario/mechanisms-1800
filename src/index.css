@@ -1,0 +1,280 @@
+/*
+  Mechanisms — app-level styles.
+  NEONDECK handles the cyberpunk/glass theme via `html[data-theme]`. Here we add
+  the app shell (hero, grid, controls) and the theme-aware "schematic" palette
+  used by the mechanism SVGs.
+*/
+
+/* ------------------------------------------------------------------ */
+/* Mechanism schematic palette — flips with theme, stays vivid on both */
+/* ------------------------------------------------------------------ */
+:root {
+  --mech-bg: rgba(6, 13, 19, 0.42);
+  --mech-grid: rgba(0, 255, 209, 0.07);
+  --mech-grid-strong: rgba(0, 255, 209, 0.13);
+  --mech-line: #6f9aa6;
+  --mech-line-dim: rgba(111, 154, 166, 0.42);
+  --mech-fill: rgba(0, 255, 209, 0.05);
+  --mech-fill-strong: rgba(0, 255, 209, 0.14);
+  --mech-hot: #ff2d78;
+  --mech-hot-soft: rgba(255, 45, 120, 0.5);
+  --mech-label: #5f8f88;
+}
+
+html[data-theme='light'] {
+  --mech-bg: rgba(255, 255, 255, 0.5);
+  --mech-grid: rgba(0, 120, 110, 0.08);
+  --mech-grid-strong: rgba(0, 120, 110, 0.16);
+  --mech-line: #4a7680;
+  --mech-line-dim: rgba(74, 118, 128, 0.4);
+  --mech-fill: rgba(0, 150, 130, 0.06);
+  --mech-fill-strong: rgba(0, 150, 130, 0.14);
+  --mech-hot: #d6278c;
+  --mech-hot-soft: rgba(214, 39, 140, 0.45);
+  --mech-label: #4a6b74;
+}
+
+/* ------------------------------------------------------------------ */
+/* App shell                                                           */
+/* ------------------------------------------------------------------ */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 72px) clamp(20px, 4vw, 36px) 112px;
+}
+
+/* top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand-mark {
+  color: var(--theme-accent, var(--neon-magenta));
+  text-shadow: var(--theme-glow-accent);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.brand-sub {
+  color: var(--theme-muted);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* hero */
+.hero {
+  margin-bottom: 56px;
+}
+
+.hero h1 {
+  font-size: clamp(22px, 4vw, 36px);
+  letter-spacing: 1px;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  color: var(--theme-text);
+}
+
+.hero h1 .accent {
+  color: var(--theme-focused-foreground);
+  text-shadow: var(--theme-glow);
+}
+
+.hero p {
+  color: var(--theme-muted);
+  max-width: 70ch;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.hero p strong {
+  color: var(--theme-text);
+  font-weight: 600;
+}
+
+/* mechanism grid */
+.mech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+/* footer */
+.footer {
+  margin-top: 72px;
+  padding-top: 28px;
+  border-top: 1px solid var(--theme-border);
+  color: var(--theme-muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: var(--theme-focused-foreground);
+}
+
+/* ------------------------------------------------------------------ */
+/* Mechanism card internals                                            */
+/* ------------------------------------------------------------------ */
+.mech-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--theme-border);
+  background: var(--mech-bg);
+  border-radius: 4px;
+}
+
+.mech-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.mech-tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tone, var(--theme-focused-foreground));
+  text-shadow: 0 0 8px var(--tone-soft, var(--theme-focused-foreground-subdued));
+}
+
+.mech-desc {
+  color: var(--theme-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.mech-readout {
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--tone, var(--theme-focused-foreground));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 1.2em;
+}
+
+.mech-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.mech-controls .spacer {
+  flex: 1;
+}
+
+/* speed badge */
+.speed-badge {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--theme-muted);
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ */
+/* SVG part styling                                                    */
+/* ------------------------------------------------------------------ */
+.mech-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mech-svg .static {
+  stroke: var(--mech-line);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.mech-svg .static-dim {
+  stroke: var(--mech-line-dim);
+  fill: none;
+  stroke-width: 1;
+}
+
+.mech-svg .moving {
+  stroke: var(--tone, var(--theme-focused-foreground));
+  fill: none;
+  stroke-width: 2;
+}
+
+.mech-svg .solid {
+  fill: var(--mech-fill-strong);
+  stroke: var(--tone, var(--theme-focused-foreground));
+  stroke-width: 1.75;
+}
+
+.mech-svg .pin {
+  fill: var(--mech-hot);
+  stroke: var(--mech-hot);
+  stroke-width: 1;
+}
+
+.mech-svg .pin-glow {
+  fill: var(--mech-hot);
+  opacity: 0.35;
+}
+
+.mech-svg .label {
+  fill: var(--mech-label);
+  font-family: var(--font-family-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.mech-svg .glow-line {
+  filter: drop-shadow(0 0 4px var(--tone-soft, var(--theme-focused-foreground-subdued)));
+}
+
+.mech-svg .glow-fill {
+  filter: drop-shadow(0 0 6px var(--tone-soft, var(--theme-focused-foreground-subdued)));
+}
+
+/* keep the hot pin crisp in both themes */
+.mech-svg .pin,
+.mech-svg .pin-glow {
+  filter: drop-shadow(0 0 5px var(--mech-hot-soft));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* NEONDECK already stops its ticker; we pause the canvases from JS. */
+}
