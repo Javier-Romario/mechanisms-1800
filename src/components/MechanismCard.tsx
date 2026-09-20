@@ -62,6 +62,17 @@ export function MechanismCard({
 
         <div className="mech-meta">
           <p className="mech-desc">{def.description}</p>
+
+          <div className="mech-block">
+            <span className="mech-block-label">// COMMON USES</span>
+            <p className="mech-block-text">{def.uses}</p>
+          </div>
+
+          <div className="mech-block">
+            <span className="mech-block-label">// GENIUS USE</span>
+            <p className="mech-block-text">{def.genius}</p>
+          </div>
+
           <span ref={readoutRef} className="mech-readout" aria-live="off">
             …
           </span>

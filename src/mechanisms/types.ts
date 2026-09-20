@@ -44,6 +44,10 @@ export interface MechanismDef {
   tag: string;
   tone: Tone;
   description: string;
+  /** Everyday places this mechanism shows up. */
+  uses: string;
+  /** A clever, less-obvious application of the same motion. */
+  genius: string;
   /** Ticker feed for the card edge marquee. */
   ticker: string[];
 }

@@ -176,6 +176,25 @@ body {
   line-height: 1.65;
 }
 
+.mech-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mech-block-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--tone, var(--theme-focused-foreground));
+}
+
+.mech-block-text {
+  color: var(--theme-muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
 .mech-readout {
   font-family: var(--font-family-mono);
   font-size: 11px;
